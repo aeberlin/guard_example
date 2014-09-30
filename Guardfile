@@ -15,7 +15,7 @@ RSPEC_OPTS = {
 
 RUBOCOP_OPTS = {
   all_on_start: false,
-  cli: "--format ProgressFormatter",
+  cli: [],
   notification: true
 }
 
