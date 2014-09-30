@@ -5,4 +5,3 @@ module GuardExample
     end
   end
 end
-
