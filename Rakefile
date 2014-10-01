@@ -1,24 +1,18 @@
 load 'main.rb'
-require 'test/support/stdout_helper'
 
 require 'rubygems'
+require 'bundler/setup'
+
+require 'cucumber/rake/task'
+require 'guard/rake_task'
 require 'rubocop/rake_task'
 require 'rspec/core/rake_task'
 
+require 'test/support/stdout_helper.rb'
+
 RuboCop::RakeTask.new
 RSpec::Core::RakeTask.new(:spec)
+Cucumber::Rake::Task.new(:features)
+Guard::RakeTask.new(:guard, '--no-interactions')
 
 task default: :guard
-
-task :guard do
-  run_command('bundle exec guard --no-interactions')
-end
-
-task :specs do
-  Rake::Task[:rspec].invoke('spec')
-end
-
-task :rspec do |_, args|
-  run_command("bundle exec rspec --tty --color #{args.join(' ')}")
-end
-
